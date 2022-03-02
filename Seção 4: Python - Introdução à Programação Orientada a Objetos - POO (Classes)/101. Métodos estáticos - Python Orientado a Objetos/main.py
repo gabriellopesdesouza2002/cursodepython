@@ -1,6 +1,4 @@
 import os
-from random import randint
-
 os.system('cls' if os.name == 'nt' else 'clear')  # se o sistema for nt é csl senao clear
 
 class Pessoa():
@@ -12,11 +10,11 @@ class Pessoa():
         self.nome = nome
         self.idade = idade
     
-    # método DE INSTÂNCIA
+    # método
     def get_nascimento(self):  # método relacionado à instância (self)
         print(f'{self.nome} {self.ano_atual - self.idade}')
         
-    @classmethod  # MÉTODO DE CLASSE
+    @classmethod
     def criar_pessoa_por_ano_de_nascimento(cls, nome, ano_nascimento):
         ''' método de classe, nao precisa estar disponível para outra
         instancia (self) mas apenas para a classe em si
@@ -25,15 +23,23 @@ class Pessoa():
         '''
         
         idade = cls.ano_atual - ano_nascimento  # variavel disponivel só nesse escopo
-        return cls(nome, idade) # executa a classe
+        return cls(nome, idade) # executa a classe  
+        
+        
+pessoa1 = Pessoa.criar_pessoa_por_ano_de_nascimento('Gabriel', 2002)  # cria a pessoa pela data da nascimento
+pessoa2 = Pessoa('Jorge', 20)  # tabém cria uma pessoa mas pela idade atual
+
+print(pessoa1, 'pessoa1')
+print(pessoa1.nome, pessoa1.idade)
+pessoa1.get_nascimento()
+"""
+a unica diferença de um para o outro é que o pessoa1 cria a pessoa_pelo_ano_de_nascimento, usa um método da classe
+    que faz um calculo para saber a idade do individuo, pega o ano atual e subtrai pela data de nascimento
+    e no final retorna o nome e a idade para ser adicionado no self pelo __init__ para criar o objeto (instância)
     
-    @staticmethod  # deixa o método abaixo como um metodo estático
-    def gera_id():
-        rand = randint(10000, 19999) # essa var só vai estar disponivel para a função gera_id
-        return rand
-        
-        
-pessoa = Pessoa('Gabriel', 20)  # tabém cria uma pessoa mas pela idade atual
-pessoa.get_nascimento()
-print(pessoa.gera_id())  # sendo executada com a instância
-print(Pessoa.gera_id())  # sendo executada diretamente na classe
+    no pessoa2 o objeto já é criado diretamente pelo __init__ e não é passado para o método da classe
+"""
+print()
+print(pessoa2, 'pessoa2')
+print(pessoa2.nome, pessoa2.idade)
+pessoa2.get_nascimento()
