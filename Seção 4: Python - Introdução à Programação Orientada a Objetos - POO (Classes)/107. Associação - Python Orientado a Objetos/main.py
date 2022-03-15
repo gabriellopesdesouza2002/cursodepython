@@ -11,6 +11,7 @@ maquinadeescrever = MaquinaDeEscrever()
 
 # criando a associação
 
+
 escritor.ferramenta_do_escritor = caneta
 escritor.ferramenta_do_escritor.escrever()
 
